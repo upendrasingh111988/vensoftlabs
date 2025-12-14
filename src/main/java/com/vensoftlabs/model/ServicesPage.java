@@ -1,19 +1,18 @@
 package com.vensoftlabs.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
 
 @Entity
-public class AboutUs {
+@Table(name = "services_page")
+public class ServicesPage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String title;
+
+    private String title;        // "Our Services"
+    private String headLine;     // "What We Offer"
+
+    @Column(length = 3000)
     private String description;
 
     public Long getId() {
@@ -32,6 +31,14 @@ public class AboutUs {
         this.title = title;
     }
 
+    public String getHeadLine() {
+        return headLine;
+    }
+
+    public void setHeadLine(String headLine) {
+        this.headLine = headLine;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -40,3 +47,4 @@ public class AboutUs {
         this.description = description;
     }
 }
+

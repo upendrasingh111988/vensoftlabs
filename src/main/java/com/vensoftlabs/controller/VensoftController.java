@@ -10,13 +10,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class VensoftController {
 @Autowired
     private VensoftService service;
 
+    // ✅ INSERT Home Page Content
+    @PostMapping("/homeContent")
+    public ResponseEntity<Home> createHome(@RequestBody Home home){
+        return ResponseEntity.ok(service.createHomaePage(home));
+    }
 
     // ✅ Home page content
     @GetMapping("/home")
@@ -46,6 +51,29 @@ public class VensoftController {
     @GetMapping("/contacts")
     public ResponseEntity<List<ContactUs>> getAllContacts() {
         return ResponseEntity.ok(service.getAllContacts());
+    }
+
+    @PostMapping("/services/page")
+    public ResponseEntity<ServicesPage> savePage(
+            @RequestBody ServicesPage page) {
+        return ResponseEntity.ok(service.savePage(page));
+    }
+
+    @PostMapping("/services/item")
+    public ResponseEntity<ServiceItem> saveItem(
+            @RequestBody ServiceItem item) {
+        return ResponseEntity.ok(service.saveItem(item));
+    }
+
+    // 🌐 Public APIs
+    @GetMapping("/services/page")
+    public ResponseEntity<ServicesPage> getPage() {
+        return ResponseEntity.ok(service.getPage());
+    }
+
+    @GetMapping("/services/items")
+    public ResponseEntity<List<ServiceItem>> getItems() {
+        return ResponseEntity.ok(service.getAllItems());
     }
 }
 

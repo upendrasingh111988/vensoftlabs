@@ -1,17 +1,18 @@
 package com.vensoftlabs.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
-public class Home {
+@Table(name = "service_item")
+public class ServiceItem {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String welcomeMessage;
-    private String headLine;
+
+    private String name;         // Development / Training / Certification
+    private String icon;         // react-icon name or font-awesome class
+
     @Column(length = 2000)
     private String description;
 
@@ -23,20 +24,20 @@ public class Home {
         this.id = id;
     }
 
-    public String getWelcomeMessage() {
-        return welcomeMessage;
+    public String getName() {
+        return name;
     }
 
-    public void setWelcomeMessage(String welcomeMessage) {
-        this.welcomeMessage = welcomeMessage;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getHeadLine() {
-        return headLine;
+    public String getIcon() {
+        return icon;
     }
 
-    public void setHeadLine(String headLine) {
-        this.headLine = headLine;
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
     public String getDescription() {
